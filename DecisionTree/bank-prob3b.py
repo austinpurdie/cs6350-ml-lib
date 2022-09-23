@@ -97,6 +97,7 @@ for r in range(len(trees_g)):
     tree_accuracy = dt.get_test_accuracy(test_data, 'y', dt.get_tree_predictions(trees_g[r], test_data))
     test_accuracy.loc[len(test_accuracy.index)] = ['Gini Index', r + 1, tree_accuracy, 100 - tree_accuracy]
 
+print("Test Accuracy Table \n")
 print(test_accuracy)
 
 train_accuracy = pd.DataFrame(columns = ['Method', 'Max Depth', 'Accuracy Rate', 'Error Rate'])
@@ -116,4 +117,5 @@ for r in range(len(trees_g)):
     tree_accuracy = dt.get_test_accuracy(train_data, 'y', predictions)
     train_accuracy.loc[len(train_accuracy.index)] = ['Gini Index', r + 1, tree_accuracy, 100 - tree_accuracy]
 
+print("Test Accuracy Table \n")
 print(train_accuracy)
