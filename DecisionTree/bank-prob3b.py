@@ -98,7 +98,6 @@ for r in range(len(trees_g)):
     test_accuracy.loc[len(test_accuracy.index)] = ['Gini Index', r + 1, tree_accuracy, 100 - tree_accuracy]
 
 print(test_accuracy)
-test_accuracy.to_csv("bank-test-accuracy-3b.csv", encoding='utf-8', index=False)
 
 train_accuracy = pd.DataFrame(columns = ['Method', 'Max Depth', 'Accuracy Rate', 'Error Rate'])
 
@@ -118,4 +117,3 @@ for r in range(len(trees_g)):
     train_accuracy.loc[len(train_accuracy.index)] = ['Gini Index', r + 1, tree_accuracy, 100 - tree_accuracy]
 
 print(train_accuracy)
-train_accuracy.to_csv("bank-train-accuracy-3b.csv", encoding='utf-8', index=False)

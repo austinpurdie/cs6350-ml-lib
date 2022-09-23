@@ -192,13 +192,3 @@ def replace_unknown(data):
             if data.at[i, column] == 'unknown':
                 data.at[i, column] = most_common_value
     return data
-
-# test = {'feature1': [1, 1, 3, 'unknown', 5], 'feature2': ['unknown', 2, 3, 4, 5], 'feature3': [3, 3, 'unknown', 4, 5], 'feature4': [4, 4, 3, 'unknown', 5], 'feature5': [5, 5, 3, 4, 'unknown']}
-
-# test_df = pd.DataFrame(test)
-
-# print(replace_unknown(test_df))
-
-# test_list = [1, 1, 2, 2]
-
-# print("The most common value is " + str(most_common(test_list)))
