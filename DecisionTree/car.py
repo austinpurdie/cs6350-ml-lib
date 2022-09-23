@@ -30,9 +30,9 @@ trees_g = [tree1_g, tree2_g, tree3_g, tree4_g, tree5_g, tree6_g]
 
 colnames = ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'label']
 
-train_data = pd.read_csv("cs6350-ml-lib/DecisionTree/car_train.csv", names = colnames, header = None)
+train_data = pd.read_csv("/car_train.csv", names = colnames, header = None)
 
-test_data = pd.read_csv("cs6350-ml-lib/DecisionTree/car_test.csv", names = colnames, header = None)
+test_data = pd.read_csv("/car_test.csv", names = colnames, header = None)
 
 for t in trees_e:
     dt.build_tree(t, train_data, 'label', t.root, 'entropy', t.max_depth)

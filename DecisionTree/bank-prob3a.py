@@ -63,9 +63,9 @@ colnames = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing
 
 numeric_cols = [0, 5, 9, 11, 12, 13, 14]
 
-train_data = dt.numeric_to_binary(pd.read_csv("cs6350-ml-lib/DecisionTree/bank-train.csv", names = colnames, header = None), numeric_cols)
+train_data = dt.numeric_to_binary(pd.read_csv("bank-train.csv", names = colnames, header = None), numeric_cols)
 
-test_data = dt.numeric_to_binary(pd.read_csv("cs6350-ml-lib/DecisionTree/bank-test.csv", names = colnames, header = None), numeric_cols)
+test_data = dt.numeric_to_binary(pd.read_csv("bank-test.csv", names = colnames, header = None), numeric_cols)
 
 for t in trees_e:
     dt.build_tree(t, train_data, 'y', t.root, 'entropy', t.max_depth)

@@ -63,9 +63,9 @@ colnames = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing
 
 numeric_cols = [0, 5, 9, 11, 12, 13, 14]
 
-train_data = dt.replace_unknown(dt.numeric_to_binary(pd.read_csv("cs6350-ml-lib/DecisionTree/bank-train.csv", names = colnames, header = None), numeric_cols))
+train_data = dt.replace_unknown(dt.numeric_to_binary(pd.read_csv("bank-train.csv", names = colnames, header = None), numeric_cols))
 
-test_data = dt.replace_unknown(dt.numeric_to_binary(pd.read_csv("cs6350-ml-lib/DecisionTree/bank-test.csv", names = colnames, header = None), numeric_cols))
+test_data = dt.replace_unknown(dt.numeric_to_binary(pd.read_csv("bank-test.csv", names = colnames, header = None), numeric_cols))
 
 unk_rep_test_data = dt.replace_unknown(test_data)
 
