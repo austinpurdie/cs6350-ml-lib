@@ -10,8 +10,8 @@ class DecisionTreeNode:
         self.type = type # whether the node is a root, branch, or leaf
         self.parent = parent # the node's parent node
         self.child = [] # a list of nodes that this node points to in the tree
-        self.depth = 0
-        self.most_common = None
+        self.depth = 0 # the depth of the tree is maintained at the level of each node for convenience of access
+        self.most_common = None # the most common label at each particular node is recorded
 
 class DecisionTree:
     def __init__(self, max_depth):
@@ -44,7 +44,6 @@ def label_proportions(labels):
         unique_proportions.append(labels.count(y)/len(labels))
     return unique_proportions
 
-### TODO : YOU MAY DELETE THE entropy(), majority_error(), and gini_index() FUNCTIONS IF THEY SEEM TO WORK AT THE END OF TESTING.
 def entropy(labels):
     proportions = label_proportions(labels)
     transformed_proportions = [ -x*math.log(x, 2) for x in proportions]
