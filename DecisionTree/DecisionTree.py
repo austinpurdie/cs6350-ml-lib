@@ -1,6 +1,5 @@
 import math
 import pandas as pd
-import numpy as np
 
 
 class DecisionTreeNode:
@@ -108,7 +107,7 @@ def add_leaf_condition(data, target, node, max_depth):
     
     if len(data.columns) == 1:
         return True
-    elif node.depth == max_depth:
+    elif node.depth == max_depth and max_depth > 0:
         return True
     elif len(get_unique_values(data)[target]) == 1:
         return True
@@ -124,7 +123,7 @@ def most_common(list):
             value_counts[y] += 1
     return max(value_counts, key = value_counts.get)
 
-def build_tree(tree, data, target, parent, method, max_depth):
+def build_tree(tree, data, target, parent, method):
     next_branch_attribute = select_attribute(data, target, method)
     for i in next_branch_attribute[1]:
         new_node = tree.add_branch(parent, next_branch_attribute[0], i)
@@ -133,10 +132,10 @@ def build_tree(tree, data, target, parent, method, max_depth):
         filtered_data = data[data[filter_attribute] == filter_value]
         filtered_data = filtered_data.loc[:, filtered_data.columns != new_node.attribute]
         new_node.most_common = most_common(list(filtered_data.loc[:, target]))
-        if add_leaf_condition(filtered_data, target, new_node, max_depth):
+        if add_leaf_condition(filtered_data, target, new_node, tree.max_depth):
             tree.add_leaf(new_node, new_node.most_common)
         else:
-            build_tree(tree, filtered_data, target, new_node, method, max_depth)
+            build_tree(tree, filtered_data, target, new_node, method)
 
 def get_tree_predictions(tree, data):
     predictions = []

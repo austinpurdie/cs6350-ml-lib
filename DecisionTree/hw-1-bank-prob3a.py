@@ -63,18 +63,18 @@ colnames = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing
 
 numeric_cols = [0, 5, 9, 11, 12, 13, 14]
 
-train_data = dt.numeric_to_binary(pd.read_csv("bank-train.csv", names = colnames, header = None), numeric_cols)
+train_data = dt.numeric_to_binary(pd.read_csv("DecisionTree/Data/bank-train.csv", names = colnames, header = None), numeric_cols)
 
-test_data = dt.numeric_to_binary(pd.read_csv("bank-test.csv", names = colnames, header = None), numeric_cols)
+test_data = dt.numeric_to_binary(pd.read_csv("DecisionTree/Data/bank-test.csv", names = colnames, header = None), numeric_cols)
 
 for t in trees_e:
-    dt.build_tree(t, train_data, 'y', t.root, 'entropy', t.max_depth)
+    dt.build_tree(t, train_data, 'y', t.root, 'entropy')
 
 for t in trees_m:
-    dt.build_tree(t, train_data, 'y', t.root, 'majority_error', t.max_depth)
+    dt.build_tree(t, train_data, 'y', t.root, 'majority_error')
 
 for t in trees_g:
-    dt.build_tree(t, train_data, 'y', t.root, 'gini_index', t.max_depth)
+    dt.build_tree(t, train_data, 'y', t.root, 'gini_index')
 
 test_accuracy = pd.DataFrame(columns = ['Method', 'Max Depth', 'Accuracy Rate', 'Error Rate'])
 
