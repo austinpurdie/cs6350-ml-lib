@@ -2,7 +2,6 @@ import math
 import pandas as pd
 import numpy as np
 import random
-import datetime
 import sys
 
 pd.options.mode.chained_assignment = None
@@ -152,7 +151,8 @@ def build_tree(tree, data, target, weights, parent, method):
     for i in next_branch_attribute[1]:
         new_node = tree.add_branch(parent, next_branch_attribute[0], i)
         filter_attribute = str(new_node.attribute)
-        filter_value = str(new_node.value)
+        #filter_value = str(new_node.value)
+        filter_value = new_node.value
         filtered_data = data[data[filter_attribute] == filter_value]
         filtered_data = filtered_data.loc[:, filtered_data.columns != new_node.attribute]
         labels_weights = filtered_data[[target, weights]]
@@ -230,6 +230,7 @@ def build_decision_tree_adaboost_model(data, target, method, num_iterations, dep
     trees = []
     for i in range(num_iterations):
         print("Building trees... " + f"{(i+1)/num_iterations*100:.1f} %", end="\r")
+        sys.stdout.flush()
         temp = DecisionTree(depth)
         build_tree(temp, data, target, 'weights', temp.root, method)
         trees.append(temp)
@@ -259,10 +260,12 @@ def get_adaboost_accuracy(trees, alpha_list, data, target, verbose = True):
     for t in range(len(trees)):
         if verbose:
             print("Generating predictions... " + f"{(t+1)/len(trees)*100:.1f} %", end="\r")
+            sys.stdout.flush()
         all_data_predictions.append(alpha_list[t] * np.array(get_tree_predictions(trees[t], data)))
         if t > 0:
             all_data_predictions[t] = all_data_predictions[t] + all_data_predictions[t-1]
     print("Getting accuracy rates...")
+    sys.stdout.flush()
     prediction_array = np.sign(np.column_stack(all_data_predictions))
     accuracy_array = (np.matmul(actual, prediction_array) + len(data)) / (2 * len(data))
     iters = []
@@ -279,6 +282,7 @@ def build_bagged_decision_tree_model(data, target, method, num_iterations, bag_s
     for i in range(num_iterations):
         if verbose:
             print("Building trees... " + f"{(i+1)/num_iterations*100:.1f} %", end="\r")
+            sys.stdout.flush()
         sample_indices = random.choices(range(len(data)), k = bag_size)
         sample_list = []
         for j in sample_indices:
@@ -296,6 +300,7 @@ def get_bagged_accuracy(trees, data, target, iter_accuracies = True, verbose = T
     for t in range(len(trees)):
         if verbose:
             print("Generating predictions... " + f"{(t+1)/len(trees)*100:.1f} %", end="\r")
+            sys.stdout.flush()
         test_predictions.append(get_tree_predictions(trees[t], data))
     test_accuracy = []
     test_prediction_df = pd.DataFrame(test_predictions)
@@ -303,6 +308,7 @@ def get_bagged_accuracy(trees, data, target, iter_accuracies = True, verbose = T
         for k in range(test_prediction_df.shape[0]):
             if verbose:
                 print("Generating accuracy metrics... " + f"{(k+1)/test_prediction_df.shape[0]*100:.1f} %", end="\r")
+                sys.stdout.flush()
             iter_test_predictions = test_prediction_df.iloc[0:k+1, :].mode()
             iter_test_predictions = list(iter_test_predictions.loc[0, :])
             test_correct = 0

@@ -35,7 +35,7 @@ for i in range(outer_iterations):
         new_entry = list(train_data.loc[j, :])
         outer_sample_list.append(new_entry)
     outer_sample = pd.DataFrame(outer_sample_list, columns = train_data.columns)
-    bagged_trees = dt.build_bagged_decision_tree_model(outer_sample, 'y', 'entropy', num_iterations = inner_iterations, bag_size = inner_size, verbose = False)
+    bagged_trees = dt.build_bagged_decision_tree_model(outer_sample, 'y', 'entropy', num_iterations = inner_iterations, bag_size = inner_size, rand_flag = 2, verbose = False)
     bagged_predictors.append(bagged_trees)
 
 first_trees = []
@@ -85,6 +85,4 @@ gse_dict = {'Metric': ['Single Tree GSE', 'Bagged Tree GSE', 'Single Tree Varian
 
 gse_df = pd.DataFrame.from_dict(gse_dict, orient = 'columns')
 
-gse_df.to_csv('gse-bagged-compare.csv')
-
-
+gse_df.to_csv('gse-randomforest-compare.csv')
