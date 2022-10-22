@@ -1,0 +1,7 @@
+,Metric,Value
+0,Single Tree GSE,0.699176
+1,Bagged Tree GSE,0.489952
+2,Single Tree Variance,0.33824712
+3,Bagged Tree Variance,0.013472640000000001
+4,Single Tree Bias,0.36092888
+5,Bagged Tree Bias,0.47647936

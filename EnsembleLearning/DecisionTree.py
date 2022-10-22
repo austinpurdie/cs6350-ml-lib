@@ -264,7 +264,7 @@ def get_adaboost_accuracy(trees, alpha_list, data, target, verbose = True):
         all_data_predictions.append(alpha_list[t] * np.array(get_tree_predictions(trees[t], data)))
         if t > 0:
             all_data_predictions[t] = all_data_predictions[t] + all_data_predictions[t-1]
-    print("Getting accuracy rates...")
+    print("\nGetting accuracy rates...")
     sys.stdout.flush()
     prediction_array = np.sign(np.column_stack(all_data_predictions))
     accuracy_array = (np.matmul(actual, prediction_array) + len(data)) / (2 * len(data))

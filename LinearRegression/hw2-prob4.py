@@ -48,13 +48,13 @@ def backtracking_gradient(w0, x, y, epsilon, max_iter, s, alpha, beta):
         sys.stdout.flush()
     return [w, value, iter_count, t_list, value_list]
 
-def stochastic_backtracking_gradient(w0, x, y, r, epsilon, max_iter):
+def stochastic_gradient(w0, x, y, r, d, epsilon, max_iter):
     w = w0
     iter_count = 0
     value_list = []
-    # while np.linalg.norm(gradf(w, x, y)) > epsilon and iter_count < max_iter:
     while np.linalg.norm(r * gradf(w, x, y)) > epsilon and iter_count < max_iter:
         samp_index = random.sample(range(len(x)), k = len(x))
+        r = r * d
         for i in samp_index:
             iter_count += 1
             sample = np.array([x[i, :]])
@@ -70,7 +70,7 @@ def stochastic_backtracking_gradient(w0, x, y, r, epsilon, max_iter):
     if iter_count >= max_iter:
         sys.exit("\n \nThe algorithm did not converge before the maximum number of iterations. Last function value: " + str(f(w, x, y)))
     else:
-        print("\n \nAlgorithm converged. \nTotal Iterations: " + str(iter_count) + "\nFinal function value: " + str(value) + "\nLearned Weight Vector: " + str(w) + "\nLearning Rate: 0.00008")
+        print("\n \nAlgorithm converged. \nTotal Iterations: " + str(iter_count) + "\nFinal function value: " + str(value) + "\nLearned Weight Vector: " + str(w))
         sys.stdout.flush()
     return [w, value, iter_count, value_list]
 
@@ -107,11 +107,9 @@ print("Test Data Cost: " + str(test_cost))
 sys.stdout.flush()
 np.savetxt('grad_cost.csv', gradient_model[4], delimiter = ",")
 
-w0 = np.array([0.9, 0.8, 0.9, 1.3, 0.1, 1.6, 1])
-
 print("\n \nRunning stochastic gradient descent...")
 sys.stdout.flush()
-stochastic_gradient_model = stochastic_backtracking_gradient(w0, train_x, train_y, 0.00008, epsilon, max_iter)
+stochastic_gradient_model = stochastic_gradient(w0, train_x, train_y, 0.015, 0.999, epsilon, max_iter)
 weight_vector = stochastic_gradient_model[0]
 test_cost = f(weight_vector, test_x, test_y)
 print("Test Data Cost: " + str(test_cost))
