@@ -9,7 +9,7 @@ sys.stdout.flush()
 print("\nGetting data, setting parameters...")
 sys.stdout.flush()
 
-iterations = 2
+iterations = 500
 
 colnames = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'y']
 
