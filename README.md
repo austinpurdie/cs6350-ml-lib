@@ -4,9 +4,10 @@ This is a machine learning library developed by Austin Purdie for CS5350/6350 in
 
 # A Note to the Grader
 
+To run the scripts associated with homework #2, run the run-hw2.sh script. For this assignment, I chose to produce my visualizations in R. The bash script will not reproduce these visualizations, but the script I used to generate them can be viewed in the main parent directory of the repository.
+
 To run the scripts associated with homework #1, run the run-hw1.sh script.
 
-To run the scripts associated with homework #2, run the run-hw2.sh script.
 
 # DecisionTree
 
