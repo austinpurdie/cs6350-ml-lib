@@ -40,7 +40,7 @@ test_accuracy_2 = dt.get_bagged_accuracy(bagged_trees_2, test_data, 'y')
 
 print("(5/9) Generating random forest (k = 2) train predictions and accuracies...")
 sys.stdout.flush()
-train_accuracy_2 = dt.get_bagged_accuracy(bagged_trees_2, test_data, 'y')
+train_accuracy_2 = dt.get_bagged_accuracy(bagged_trees_2, train_data, 'y')
 
 print("(6/9) Generating random forest (k = 4) test predictions and accuracies...")
 sys.stdout.flush()
