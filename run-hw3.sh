@@ -1,6 +1,7 @@
 #!/bin/bash
 
 pip install numpy
+pip install pandas
 pip install random
 
 echo "Will sleep five minutes after execution so you can view the results..."
