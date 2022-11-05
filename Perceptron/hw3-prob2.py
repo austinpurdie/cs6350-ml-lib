@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import random
+import sys
 
 def perceptron(data, target, r, epochs, type = 'standard'):
     n = len(data)
@@ -61,10 +62,13 @@ def get_perceptron_accuracy(data, target, w, c = None, type = 'standard'):
     accuracy = num_correct / n
     if type == 'standard':
         print("The learned weight vector is: \n" + str(w))
+        sys.stdout.flush()
     if type == 'average':
         average_w = np.sum(w, axis = 0)
         print("The learned average weight vector is: \n" + str(average_w))
+        sys.stdout.flush()
     print("The test accuracy is: " + str(accuracy * 100) + '%')
+    sys.stdout.flush()
     if type == 'voted':
         w_df = pd.DataFrame(w, columns = ['w1', 'w2', 'w3', 'w4', 'w5'])
         w_df['vote'] = c
@@ -77,17 +81,20 @@ train_data = np.genfromtxt('Perceptron/Data/train_processed.csv', delimiter = ',
 test_data = np.genfromtxt('Perceptron/Data/test_processed.csv', delimiter = ',')
 
 print("\nStandard Perceptron:")
+sys.stdout.flush()
 
 standard_perceptron = perceptron(train_data, 5, 0.1, 10, 'standard')
 
 standard_accuracy = get_perceptron_accuracy(test_data, 5, standard_perceptron, type = 'standard')
 
 print("\nVoted Perceptron")
+sys.stdout.flush()
 
 voted_perceptron = perceptron(train_data, 5, 0.1, 10, type = 'voted')
 
 voted_accuracy = get_perceptron_accuracy(test_data, 5, voted_perceptron[0], voted_perceptron[1], 'voted')
 
 print('\nAverage Perceptron')
+sys.stdout.flush()
 
 average_accuracy = get_perceptron_accuracy(test_data, 5, voted_perceptron[0], voted_perceptron[1], 'average')
