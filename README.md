@@ -4,6 +4,8 @@ This is a machine learning library developed by Austin Purdie for CS5350/6350 in
 
 # A Note to the Grader
 
+To run the script associated with homework #3, run the run-hw3.sh script.
+
 To run the scripts associated with homework #2, run the run-hw2.sh script. For this assignment, I chose to produce my visualizations in R. You can see these visualizations in the PDF submission I attached via Canvas, but the bash script will not reproduce them. You may view the script I used to generate them in the main parent directory of the repository.
 
 To run the scripts associated with homework #1, run the run-hw1.sh script.
@@ -185,3 +187,44 @@ to run the stochastic gradient descent algorithm. The parameters are as follows:
 
 The function will return a list containing 1) the learned weight vector w, 2) the value of the cost function at that weight vector, 3) the number of iterations, and 4) the list of values of the cost function at each iteration.
 
+# Perceptron
+
+The Perceptron folder contains scripts that can run the standard, voted, and averaged perceptron algorithms. You can run 
+
+```python
+
+perceptron(data, target, r, epochs, type)
+
+```
+
+to run any of the three versions of the perceptron algorithm. The parameters are as follows:
+
+- data: the dataset you wish to train with; all of the data must be numerical
+
+- target: the name of the target column, which must be composed only of 1's and -1's
+
+- r: the learning rate (try starting with 1)
+
+- epochs: the number of times to run the algorithm through the data set
+
+- type: a string indicating which algorithm type to use; valid arguments are 'standard' and 'voted'. There is no 'average' argument because the average perceptron only differs from the voted perceptron in the way it generates predictions, which is a task performed by the get_perceptron_accuracy() function.
+
+You can test your model's accuracy by calling the get_perceptron_accuracy() function:
+
+```python
+
+get_perceptron_accuracy(data, target, w, c, type)
+
+```
+
+where the parameters are as follows:
+
+- data: the data you wish to generate predictions for 
+
+- target: the name of the target column
+
+- w: the weight vector returned by perceptron() above
+
+- c: the vector of votes returned by perceptron() above, if you wish to get voted accuracy and the perceptron() function's type argument was 'voted'
+
+- type: a string indicating which algorithm type to use; if perceptron() was run with type = 'standard', then this same argument should be passed to the accuracy function. If perceptron() was run with type = 'voted', then this argument can be 'voted' or 'average'.
