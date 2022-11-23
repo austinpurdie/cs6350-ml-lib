@@ -228,3 +228,27 @@ where the parameters are as follows:
 - c: the vector of votes returned by perceptron() above, if you wish to get voted accuracy and the perceptron() function's type argument was 'voted'
 
 - type: a string indicating which algorithm type to use; if perceptron() was run with type = 'standard', then this same argument should be passed to the accuracy function. If perceptron() was run with type = 'voted', then this argument can be 'voted' or 'average'.
+
+## Support Vector Machines
+
+You can run
+
+```python
+
+build_svm(data, target, num_epochs, c, gamma_0, a = False)
+
+```
+
+to run the stochastic gradient descent algorithm. The parameters are as follows:
+
+- data: the training data set
+
+- target: the array of example labels; these should all be 1 or -1
+
+- num_epochs: the number of times to run through the data set
+
+- c: the parameter C used to compute each new iteration of w
+
+- gamma_0: the learning rate parameter
+
+- a: another learning rate parameter; leave as false to use the schedule from part (b) of Problem 2, otherwise replace this with a number to use the schedule from part (a)
