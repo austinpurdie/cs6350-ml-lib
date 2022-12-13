@@ -117,6 +117,7 @@ def nn_3layer(widths, input_size, epochs, gamma_0, d, train_examples, train_labe
     test_accuracy_list = []
     for i in widths:
         print("Now training width = " + str(i))
+        sys.stdout.flush()
         networks.append(NeuralNetwork([input_size, i, i, 1], initialize))
         networks[-1].stoch_grad(train_examples, train_labels, epochs, gamma_0, d)
         train_accuracy_list.append(networks[-1].get_accuracy(train_examples, train_labels))
