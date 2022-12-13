@@ -252,3 +252,49 @@ to run the stochastic gradient descent algorithm. The parameters are as follows:
 - gamma_0: the learning rate parameter
 
 - a: another learning rate parameter; leave as false to use the schedule from part (b) of Problem 2, otherwise replace this with a number to use the schedule from part (a)
+
+## Neural Networks
+
+You can run
+
+```python
+
+net = NeuralNetwork(architecure, initialize)
+
+```
+
+to initialize a new neural network, where
+
+- architecture: a list denoting the network's architecture; for example, [4, 3, 3, 1] would be a network with input size 4, two hidden layers with three neurons, and one output node
+
+- initialize: a string indicating how to initialize the network weights; 'gaussian' and 'zero' are valid arguments
+
+From there, the network can be trained via stochastic gradient descent by running
+
+```python
+
+net.stoch_grad(data, labels, epochs, gamma_0, d)
+
+```
+
+where the parameters are as follows:
+
+- data: a NumPy array of the examples; do not include labels
+
+- labels: a NumPy array of the labels corresponding the examples
+
+- epochs: the number of times to cycle through the data in the stochastic gradient descent algorithm
+
+- gamma_0: a learning rate parameter; try 1 to start
+
+- d: a learning rate parameter; try 50 to start
+
+Once the network has been trained, you can feed a test set to get a classification accuracy rate by running
+
+```python
+
+net.get_accuracy(examples, labels)
+
+```
+
+where the parameters are as they were in net.stoch_grad() above.
