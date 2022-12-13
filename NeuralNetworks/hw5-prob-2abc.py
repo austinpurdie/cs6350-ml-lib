@@ -12,6 +12,7 @@ np.random.seed(571832)
 random.seed(183275)
 
 print("Training Gaussian Initialized Networks:\n")
+sys.stdout.flush()
 
 gaussian_results = nn_3layer(widths = [5, 10, 25, 50, 100], input_size = 4, 
                     epochs = 200, gamma_0 = 1, d = 50, 
